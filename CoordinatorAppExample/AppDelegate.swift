@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     lazy var appCoordinator: Coordinatable = self.makeCoordinator()
+    var date: Date?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -34,6 +35,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func makeCoordinator() -> Coordinatable {
         let coordinator = AppCoordinator(router: rootController)
         return coordinator
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        date = Date()
+    }
+    
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        guard let date = self.date else { return }
+        let timeInBackground = Date().timeIntervalSince(date)
+        if timeInBackground > 5 {
+            (appCoordinator as! AppCoordinator).awake()
+        }
     }
 
 }

@@ -23,6 +23,9 @@
 		804C5FD324238CAE00005621 /* ThirdScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C5FD124238CAE00005621 /* ThirdScreen.swift */; };
 		804C5FD424238CAE00005621 /* ThirdScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 804C5FD224238CAE00005621 /* ThirdScreen.xib */; };
 		804C5FD92424ECE900005621 /* AuthViewsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C5FD82424ECE900005621 /* AuthViewsFactory.swift */; };
+		804C5FDB2425072D00005621 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C5FDA2425072D00005621 /* MainCoordinator.swift */; };
+		804C5FDD242507C100005621 /* MainViewsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C5FDC242507C100005621 /* MainViewsFactory.swift */; };
+		804C5FE324252F7D00005621 /* CoordinatorsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C5FE224252F7D00005621 /* CoordinatorsFactory.swift */; };
 		8059458F2421567400C4F63D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8059458E2421567400C4F63D /* AppDelegate.swift */; };
 		805945982421567700C4F63D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 805945972421567700C4F63D /* Assets.xcassets */; };
 		8059459B2421567700C4F63D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 805945992421567700C4F63D /* LaunchScreen.storyboard */; };
@@ -45,6 +48,9 @@
 		804C5FD124238CAE00005621 /* ThirdScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdScreen.swift; sourceTree = "<group>"; };
 		804C5FD224238CAE00005621 /* ThirdScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThirdScreen.xib; sourceTree = "<group>"; };
 		804C5FD82424ECE900005621 /* AuthViewsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewsFactory.swift; sourceTree = "<group>"; };
+		804C5FDA2425072D00005621 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		804C5FDC242507C100005621 /* MainViewsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewsFactory.swift; sourceTree = "<group>"; };
+		804C5FE224252F7D00005621 /* CoordinatorsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorsFactory.swift; sourceTree = "<group>"; };
 		8059458B2421567400C4F63D /* CoordinatorAppExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoordinatorAppExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8059458E2421567400C4F63D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		805945972421567700C4F63D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -89,6 +95,7 @@
 		804C5FBF2421602300005621 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				804C5FE4242530F800005621 /* Protocols */,
 				804C5FD72424ECC400005621 /* Factorys */,
 			);
 			path = Helpers;
@@ -97,6 +104,7 @@
 		804C5FC824238C3600005621 /* MainFlow */ = {
 			isa = PBXGroup;
 			children = (
+				804C5FDA2425072D00005621 /* MainCoordinator.swift */,
 				804C5FC924238C8000005621 /* MainScreen.swift */,
 				804C5FCD24238C9800005621 /* SecondScreen.swift */,
 				804C5FD124238CAE00005621 /* ThirdScreen.swift */,
@@ -128,9 +136,26 @@
 		804C5FD72424ECC400005621 /* Factorys */ = {
 			isa = PBXGroup;
 			children = (
-				804C5FD82424ECE900005621 /* AuthViewsFactory.swift */,
+				804C5FE224252F7D00005621 /* CoordinatorsFactory.swift */,
+				804C5FDE24252F1000005621 /* Views */,
 			);
 			path = Factorys;
+			sourceTree = "<group>";
+		};
+		804C5FDE24252F1000005621 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				804C5FD82424ECE900005621 /* AuthViewsFactory.swift */,
+				804C5FDC242507C100005621 /* MainViewsFactory.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		804C5FE4242530F800005621 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		805945822421567400C4F63D = {
@@ -239,12 +264,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				804C5FCB24238C8000005621 /* MainScreen.swift in Sources */,
+				804C5FDB2425072D00005621 /* MainCoordinator.swift in Sources */,
 				804C5FBE24215CD300005621 /* BaseCoordinator.swift in Sources */,
 				804C5FCF24238C9800005621 /* SecondScreen.swift in Sources */,
 				804C5FBC24215B9100005621 /* AppCoordinator.swift in Sources */,
 				804C5FD92424ECE900005621 /* AuthViewsFactory.swift in Sources */,
 				804C5FC62423897B00005621 /* RegisterViewController.swift in Sources */,
+				804C5FE324252F7D00005621 /* CoordinatorsFactory.swift in Sources */,
 				804C5FB52421581E00005621 /* SignInViewController.swift in Sources */,
+				804C5FDD242507C100005621 /* MainViewsFactory.swift in Sources */,
 				804C5FB924215AD700005621 /* AuthCoordinator.swift in Sources */,
 				804C5FD324238CAE00005621 /* ThirdScreen.swift in Sources */,
 				8059458F2421567400C4F63D /* AppDelegate.swift in Sources */,

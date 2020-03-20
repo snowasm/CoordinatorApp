@@ -9,6 +9,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainScreen" customModule="CoordinatorAppExample" customModuleProvider="target">
             <connections>
+                <outlet property="lastNameTF" destination="Yt8-Ok-QVK" id="Wdm-8r-3JX"/>
+                <outlet property="nameTF" destination="Xea-46-z44" id="zW3-gf-zzZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -54,6 +56,9 @@
                     <rect key="frame" x="171" y="259" width="32" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Next"/>
+                    <connections>
+                        <action selector="nextPressed:" destination="-1" eventType="touchUpInside" id="dwm-FL-jaO"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

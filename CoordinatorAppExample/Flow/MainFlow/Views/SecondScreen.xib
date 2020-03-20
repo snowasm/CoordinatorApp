@@ -9,6 +9,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SecondScreen" customModule="CoordinatorAppExample" customModuleProvider="target">
             <connections>
+                <outlet property="adresTF" destination="gio-At-eRe" id="EdT-8F-8NW"/>
+                <outlet property="ageTF" destination="T0m-1t-dfU" id="KgS-Hz-BqP"/>
+                <outlet property="lastNameTF" destination="B4K-hZ-6wg" id="ZEf-65-Je0"/>
+                <outlet property="nameTF" destination="Zb8-zI-7oY" id="iPo-Lh-zjU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -41,6 +45,9 @@
                     <rect key="frame" x="181" y="380" width="32" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Next"/>
+                    <connections>
+                        <action selector="nextPressed:" destination="-1" eventType="touchUpInside" id="bVz-v2-dsb"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Last name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VLk-N3-lij">
                     <rect key="frame" x="16" y="178" width="80" height="21"/>

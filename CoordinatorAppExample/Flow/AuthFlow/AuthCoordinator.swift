@@ -10,14 +10,14 @@ import UIKit
 
 enum AuthState {
     case non
-    case auth
+    case auth(String)
     case forgot
     case register
 }
 
 class AuthCoordinator: BaseCoordinator, Coordinatable {
     
-    var finishFlow: (()->())?
+    var finishFlow: ((String)->())?
     var state: AuthState
     
     
@@ -38,8 +38,9 @@ class AuthCoordinator: BaseCoordinator, Coordinatable {
                 showSignIn()
             case .forgot:
                 showForgot()
-            case .auth:
+            case .auth(let login):
                 print("auth complete")
+                self.finishFlow?(login)
             case .register:
                 showRegister()
         }
@@ -52,7 +53,7 @@ class AuthCoordinator: BaseCoordinator, Coordinatable {
         vcSignIn.onLogin = {[weak self] (login, password) in
             print(login)
             print(password)
-            self?.state = .auth
+            self?.state = .auth(login)
             self?.start()
         }
         vcSignIn.onForgot = {[weak self] in
