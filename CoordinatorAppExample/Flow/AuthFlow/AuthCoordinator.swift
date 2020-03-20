@@ -27,7 +27,7 @@ class AuthCoordinator: BaseCoordinator, Coordinatable {
     init(router: UINavigationController, factory: AuthViewsFactory) {
         self.factory = factory
         self.router = router
-//        router.isNavigationBarHidden = true
+        router.isNavigationBarHidden = true
         state = .non
     }
     
