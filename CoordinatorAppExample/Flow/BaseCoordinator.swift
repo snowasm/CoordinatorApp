@@ -8,13 +8,11 @@
 
 import UIKit
 
-protocol Coordinatable: AnyObject {
-    func start()
-}
-
-class BaseCoordinator {
+class BaseCoordinator: Coordinatable {
     
     var childCoordinators: [Coordinatable] = []
+    
+    func start() {}
     
     func addDependency(child: Coordinatable) {
         guard !childCoordinators.contains(where: {$0 === child}) else { return }

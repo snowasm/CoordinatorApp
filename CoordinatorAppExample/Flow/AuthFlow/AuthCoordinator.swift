@@ -8,31 +8,23 @@
 
 import UIKit
 
-enum AuthState {
-    case non
-    case auth(String)
-    case forgot
-    case register
-}
-
-class AuthCoordinator: BaseCoordinator, Coordinatable {
+class AuthCoordinator: BaseCoordinator {
     
     var finishFlow: ((String)->())?
     var state: AuthState
     
     
-    var router: UINavigationController
+    var router: Routable
     var factory: AuthViewsFactory
     
-    init(router: UINavigationController, factory: AuthViewsFactory) {
+    init(router: Routable, factory: AuthViewsFactory) {
         self.factory = factory
         self.router = router
-        router.isNavigationBarHidden = true
         state = .non
     }
     
     
-    func start() {
+    override func start() {
         switch self.state {
             case .non:
                 showSignIn()
@@ -64,17 +56,17 @@ class AuthCoordinator: BaseCoordinator, Coordinatable {
             self?.state = .register
             self?.start()
         }
-        router.pushViewController(vcSignIn, animated: true)
+        router.setRootModule(vcSignIn, hideBar: true)
     }
     
     func showForgot() {
         let vcForgot = factory.createForgotViewController()
         vcForgot.onOk = { [weak self] in
             self?.state = .non
-            self?.router.popViewController(animated: true)
+            self?.router.popModule(animated: true)
         }
         
-        router.pushViewController(vcForgot, animated: true)
+        router.push(vcForgot, animated: true)
     }
     
     func showRegister() {
@@ -83,10 +75,10 @@ class AuthCoordinator: BaseCoordinator, Coordinatable {
             self?.state = .non
             print(login)
             print(pass)
-            self?.router.popViewController(animated: true)
+            self?.router.popModule(animated: true)
         }
         
-        router.pushViewController(vcRegister, animated: true)
+        router.push(vcRegister, animated: true)
     }
     
 }

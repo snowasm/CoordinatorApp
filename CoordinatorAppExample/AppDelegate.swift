@@ -33,7 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func makeCoordinator() -> Coordinatable {
-        let coordinator = AppCoordinator(router: rootController)
+        let router = Router(rootController: rootController)
+        let coordinator = AppCoordinator(router: router)
         return coordinator
     }
     

@@ -8,31 +8,24 @@
 
 import UIKit
 
-enum MainState {
-    case first
-    case second(String, String)
-    case third([String])
-}
-
-class MainCoordinator: BaseCoordinator, Coordinatable {
+class MainCoordinator: BaseCoordinator {
     
     var finishFlow: (()->())?
     var state: MainState
     
     
-    var router: UINavigationController
+    var router: Routable
     var factory: MainViewsFactory
     
-    init(router: UINavigationController, factory: MainViewsFactory) {
+    init(router: Routable, factory: MainViewsFactory) {
         self.factory = factory
         self.router = router
-        router.isNavigationBarHidden = true
         state = .first
     }
     
     
     
-    func start() {
+    override func start() {
         switch state {
             case .first:
                 showMainScreen()
@@ -50,7 +43,7 @@ class MainCoordinator: BaseCoordinator, Coordinatable {
             self?.state = .second(name, lastName)
             self?.start()
         }
-        router.setViewControllers([vcMain as UIViewController], animated: true)
+        router.setRootModule(vcMain, hideBar: true)
         
     }
     
@@ -63,7 +56,7 @@ class MainCoordinator: BaseCoordinator, Coordinatable {
             self?.state = .third(data)
             self?.start()
         }
-        router.pushViewController(vcSecondScreen, animated: true)
+        router.push(vcSecondScreen, animated: true)
     }
     
     func showThirdScreen(data: [String]) {
@@ -73,10 +66,7 @@ class MainCoordinator: BaseCoordinator, Coordinatable {
             
             
         }
-        router.pushViewController(vcThirdScreen, animated: true)
-        
-        
-        
+        router.push(vcThirdScreen, animated: true)
     }
     
     

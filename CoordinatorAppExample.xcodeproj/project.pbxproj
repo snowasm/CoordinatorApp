@@ -29,6 +29,14 @@
 		8059458F2421567400C4F63D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8059458E2421567400C4F63D /* AppDelegate.swift */; };
 		805945982421567700C4F63D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 805945972421567700C4F63D /* Assets.xcassets */; };
 		8059459B2421567700C4F63D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 805945992421567700C4F63D /* LaunchScreen.storyboard */; };
+		80A2B260242A8615000992F1 /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A2B25F242A8615000992F1 /* Coordinatable.swift */; };
+		80A2B262242A873C000992F1 /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A2B261242A873C000992F1 /* Routable.swift */; };
+		80A2B264242A879A000992F1 /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A2B263242A879A000992F1 /* Presentable.swift */; };
+		80A2B266242A88E4000992F1 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A2B265242A88E4000992F1 /* Router.swift */; };
+		80A2B268242A8D80000992F1 /* CoordinatorFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A2B267242A8D80000992F1 /* CoordinatorFactoryProtocol.swift */; };
+		80A2B26B242A948E000992F1 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A2B26A242A948E000992F1 /* AppState.swift */; };
+		80A2B26D242A94BA000992F1 /* AuthState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A2B26C242A94BA000992F1 /* AuthState.swift */; };
+		80A2B26F242A94D5000992F1 /* MainState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A2B26E242A94D5000992F1 /* MainState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +64,14 @@
 		805945972421567700C4F63D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8059459A2421567700C4F63D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8059459C2421567700C4F63D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		80A2B25F242A8615000992F1 /* Coordinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinatable.swift; sourceTree = "<group>"; };
+		80A2B261242A873C000992F1 /* Routable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
+		80A2B263242A879A000992F1 /* Presentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
+		80A2B265242A88E4000992F1 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		80A2B267242A8D80000992F1 /* CoordinatorFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorFactoryProtocol.swift; sourceTree = "<group>"; };
+		80A2B26A242A948E000992F1 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		80A2B26C242A94BA000992F1 /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
+		80A2B26E242A94D5000992F1 /* MainState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +111,8 @@
 		804C5FBF2421602300005621 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				80A2B269242A9475000992F1 /* Enums */,
+				80A2B265242A88E4000992F1 /* Router.swift */,
 				804C5FE4242530F800005621 /* Protocols */,
 				804C5FD72424ECC400005621 /* Factorys */,
 			);
@@ -154,6 +172,10 @@
 		804C5FE4242530F800005621 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				80A2B25F242A8615000992F1 /* Coordinatable.swift */,
+				80A2B261242A873C000992F1 /* Routable.swift */,
+				80A2B263242A879A000992F1 /* Presentable.swift */,
+				80A2B267242A8D80000992F1 /* CoordinatorFactoryProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -185,6 +207,16 @@
 				8059459C2421567700C4F63D /* Info.plist */,
 			);
 			path = CoordinatorAppExample;
+			sourceTree = "<group>";
+		};
+		80A2B269242A9475000992F1 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				80A2B26A242A948E000992F1 /* AppState.swift */,
+				80A2B26C242A94BA000992F1 /* AuthState.swift */,
+				80A2B26E242A94D5000992F1 /* MainState.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,16 +295,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80A2B26F242A94D5000992F1 /* MainState.swift in Sources */,
 				804C5FCB24238C8000005621 /* MainScreen.swift in Sources */,
 				804C5FDB2425072D00005621 /* MainCoordinator.swift in Sources */,
+				80A2B260242A8615000992F1 /* Coordinatable.swift in Sources */,
 				804C5FBE24215CD300005621 /* BaseCoordinator.swift in Sources */,
+				80A2B266242A88E4000992F1 /* Router.swift in Sources */,
 				804C5FCF24238C9800005621 /* SecondScreen.swift in Sources */,
 				804C5FBC24215B9100005621 /* AppCoordinator.swift in Sources */,
 				804C5FD92424ECE900005621 /* AuthViewsFactory.swift in Sources */,
+				80A2B268242A8D80000992F1 /* CoordinatorFactoryProtocol.swift in Sources */,
 				804C5FC62423897B00005621 /* RegisterViewController.swift in Sources */,
+				80A2B262242A873C000992F1 /* Routable.swift in Sources */,
+				80A2B26B242A948E000992F1 /* AppState.swift in Sources */,
 				804C5FE324252F7D00005621 /* CoordinatorsFactory.swift in Sources */,
+				80A2B26D242A94BA000992F1 /* AuthState.swift in Sources */,
 				804C5FB52421581E00005621 /* SignInViewController.swift in Sources */,
 				804C5FDD242507C100005621 /* MainViewsFactory.swift in Sources */,
+				80A2B264242A879A000992F1 /* Presentable.swift in Sources */,
 				804C5FB924215AD700005621 /* AuthCoordinator.swift in Sources */,
 				804C5FD324238CAE00005621 /* ThirdScreen.swift in Sources */,
 				8059458F2421567400C4F63D /* AppDelegate.swift in Sources */,

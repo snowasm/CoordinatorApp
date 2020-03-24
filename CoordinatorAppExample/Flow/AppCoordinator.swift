@@ -8,25 +8,20 @@
 
 import UIKit
 
-enum State {
-    case nonAuth
-    case auth
-}
-
-class AppCoordinator: BaseCoordinator, Coordinatable {
+class AppCoordinator: BaseCoordinator {
     
-    var state: State = .nonAuth
+    var state: AppState = .nonAuth
     
-    var router: UINavigationController
+    var router: Routable
     var factory: CoordinatorsFactory
     
-    init(router: UINavigationController) {
+    init(router: Routable) {
         self.router = router
         self.factory = CoordinatorsFactory(router: router)
     }
     
     
-    func start() {
+    override func start() {
         switch state {
             case .nonAuth:
                 authFlow()
