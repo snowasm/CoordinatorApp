@@ -18,22 +18,22 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MdF-Gl-CsU">
-                    <rect key="frame" x="86" y="84" width="212" height="34"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MdF-Gl-CsU">
+                    <rect key="frame" x="81.5" y="147" width="212" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="212" id="9iJ-mq-2Z2"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o04-Xt-7zK">
-                    <rect key="frame" x="16" y="91" width="46" height="23"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o04-Xt-7zK">
+                    <rect key="frame" x="16" y="152.5" width="46" height="23"/>
                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3pl-f1-R2z">
-                    <rect key="frame" x="150" y="163" width="75" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3pl-f1-R2z">
+                    <rect key="frame" x="150" y="261" width="75" height="30"/>
                     <state key="normal" title="Reset pass"/>
                     <connections>
                         <action selector="resetPressed:" destination="-1" eventType="touchUpInside" id="aaM-nA-C1w"/>
@@ -41,6 +41,14 @@
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="MdF-Gl-CsU" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="147" id="3Z6-EO-noU"/>
+                <constraint firstItem="3pl-f1-R2z" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="FZH-Bo-1ys"/>
+                <constraint firstItem="MdF-Gl-CsU" firstAttribute="leading" secondItem="o04-Xt-7zK" secondAttribute="trailing" constant="19.5" id="Qo0-ZL-Qfx"/>
+                <constraint firstItem="o04-Xt-7zK" firstAttribute="centerY" secondItem="MdF-Gl-CsU" secondAttribute="centerY" id="gWo-ZS-nd3"/>
+                <constraint firstItem="MdF-Gl-CsU" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="mnI-zb-EzU"/>
+                <constraint firstItem="3pl-f1-R2z" firstAttribute="top" secondItem="MdF-Gl-CsU" secondAttribute="bottom" constant="80" id="oNG-rX-3kT"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="138.40000000000001" y="129.98500749625188"/>
         </view>

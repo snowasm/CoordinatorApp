@@ -8,9 +8,8 @@
 
 import UIKit
 
-class SecondScreen: UIViewController {
+class SecondScreen: UIViewController, SecondScreenProtocol {
     
-    var onNext: (([String])->())?
     var name: String?
     var lastName: String?
     
@@ -19,11 +18,23 @@ class SecondScreen: UIViewController {
     @IBOutlet weak var ageTF: UITextField!
     @IBOutlet weak var adresTF: UITextField!
     
+    weak var coordinator: MainCoordinatorProtocol!
+    
+    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, coordinator: MainCoordinatorProtocol, data: [String]) {
+        self.coordinator = coordinator
+        self.name = data[0]
+        self.lastName = data[1]
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         nameTF.text = name
         lastNameTF.text = lastName
-        // Do any additional setup after loading the view.
     }
 
     @IBAction func nextPressed(_ sender: UIButton) {
@@ -32,17 +43,7 @@ class SecondScreen: UIViewController {
             let adres = adresTF.text
         else { return }
         let outData = [self.name!, self.lastName!, age, adres]
-        onNext?(outData)
+        self.coordinator.onNextSecondScreen(data: outData)
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -8,19 +8,21 @@
 
 import UIKit
 
-class MainCoordinator: BaseCoordinator {
+class MainCoordinator: BaseCoordinator, MainCoordinatorProtocol {
     
-    var finishFlow: (()->())?
+    weak var parentCoordinator: AppCoordinatorProtocol!
     var state: MainState
     
-    
     var router: Routable
-    var factory: MainViewsFactory
+    var factory: MainViewsFactoryProtocol
     
-    init(router: Routable, factory: MainViewsFactory) {
-        self.factory = factory
-        self.router = router
+    init(parentCoordinator: AppCoordinatorProtocol, router: Routable, factory: MainViewsFactoryProtocol) {
+        self.parentCoordinator = parentCoordinator
         state = .first
+        self.router = router
+        self.factory = factory
+        super.init()
+        self.factory.setCoordinator(coordinator: self)
     }
     
     
@@ -29,43 +31,45 @@ class MainCoordinator: BaseCoordinator {
         switch state {
             case .first:
                 showMainScreen()
-            case let .second(name, lastName):
-                showSecondScreen(name: name, lastName: lastName)
+            case let .second(data):
+                showSecondScreen(data: data)
             case let .third(data):
                 showThirdScreen(data: data)
         }
     }
     
+    func onNextMainScreen(data: [String]) {
+        self.state = .second(data)
+        self.start()
+    }
     
-    func showMainScreen() {
-        let vcMain = factory.createMainScreen()
-        vcMain.onNext = {[weak self] (name, lastName) in
-            self?.state = .second(name, lastName)
-            self?.start()
-        }
-        router.setRootModule(vcMain, hideBar: true)
-        
+    func onNextSecondScreen(data: [String]) {
+        self.state = .third(data)
+        self.start()
+    }
+    
+    func onConfirm(data: [String]) {
+        self.finishFlow(data: data)
+    }
+    
+    func finishFlow(data: [String]) {
+        self.parentCoordinator.finishMainFlow(coordinator: self, data: data)
     }
     
     
-    func showSecondScreen(name: String, lastName: String) {
-        let vcSecondScreen = factory.createSecondScreen()
-        vcSecondScreen.name = name
-        vcSecondScreen.lastName = lastName
-        vcSecondScreen.onNext = {[weak self] (data) in
-            self?.state = .third(data)
-            self?.start()
-        }
+    private func showMainScreen() {
+        let vcMain = factory.createMainScreen()
+        router.setRootModule(vcMain, hideBar: true)
+    }
+    
+    
+    private func showSecondScreen(data: [String]) {
+        let vcSecondScreen = factory.createSecondScreen(data: data)
         router.push(vcSecondScreen, animated: true)
     }
     
-    func showThirdScreen(data: [String]) {
-        let vcThirdScreen = factory.createThirdScreenr()
-        vcThirdScreen.data = data
-        vcThirdScreen.onConfirm = {(data) in
-            
-            
-        }
+    private func showThirdScreen(data: [String]) {
+        let vcThirdScreen = factory.createThirdScreenr(data: data)
         router.push(vcThirdScreen, animated: true)
     }
     

@@ -8,21 +8,23 @@
 
 import UIKit
 
-class CoordinatorsFactory {
+class CoordinatorsFactory: CoordinatorFactoryProtocol {
     
+    var parentCoordinator: AppCoordinatorProtocol
     var router: Routable
     
-    init(router: Routable) {
+    init(parentCoordinator: AppCoordinatorProtocol, router: Routable) {
+        self.parentCoordinator = parentCoordinator
         self.router = router
     }
     
     
-    func createAuthCoordinator() -> AuthCoordinator {
-        return AuthCoordinator(router: router, factory: AuthViewsFactory())
+    func createAuthCoordinator() -> Coordinatable & AuthCoordinatorProtocol {
+        return AuthCoordinator(parentCoordinator: parentCoordinator, router: router, factory: AuthViewsFactory())
     }
     
-    func createMainCoordinator() -> MainCoordinator {
-        return MainCoordinator(router: router, factory: MainViewsFactory())
+    func createMainCoordinator() -> Coordinatable & MainCoordinatorProtocol {
+        return MainCoordinator(parentCoordinator: parentCoordinator, router: router, factory: MainViewsFactory())
     }
     
 }

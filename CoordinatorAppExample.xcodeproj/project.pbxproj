@@ -37,6 +37,10 @@
 		80A2B26B242A948E000992F1 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A2B26A242A948E000992F1 /* AppState.swift */; };
 		80A2B26D242A94BA000992F1 /* AuthState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A2B26C242A94BA000992F1 /* AuthState.swift */; };
 		80A2B26F242A94D5000992F1 /* MainState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A2B26E242A94D5000992F1 /* MainState.swift */; };
+		80A2B271242A9A25000992F1 /* AuthCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A2B270242A9A25000992F1 /* AuthCoordinatorProtocol.swift */; };
+		80A2B273242A9F80000992F1 /* AppCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A2B272242A9F80000992F1 /* AppCoordinatorProtocol.swift */; };
+		80A2B275242AB631000992F1 /* ModuleFactoryProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A2B274242AB631000992F1 /* ModuleFactoryProtocols.swift */; };
+		80A2B277242B7193000992F1 /* MainCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A2B276242B7193000992F1 /* MainCoordinatorProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +76,10 @@
 		80A2B26A242A948E000992F1 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		80A2B26C242A94BA000992F1 /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
 		80A2B26E242A94D5000992F1 /* MainState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainState.swift; sourceTree = "<group>"; };
+		80A2B270242A9A25000992F1 /* AuthCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinatorProtocol.swift; sourceTree = "<group>"; };
+		80A2B272242A9F80000992F1 /* AppCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorProtocol.swift; sourceTree = "<group>"; };
+		80A2B274242AB631000992F1 /* ModuleFactoryProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFactoryProtocols.swift; sourceTree = "<group>"; };
+		80A2B276242B7193000992F1 /* MainCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,9 +181,13 @@
 			isa = PBXGroup;
 			children = (
 				80A2B25F242A8615000992F1 /* Coordinatable.swift */,
-				80A2B261242A873C000992F1 /* Routable.swift */,
 				80A2B263242A879A000992F1 /* Presentable.swift */,
+				80A2B261242A873C000992F1 /* Routable.swift */,
 				80A2B267242A8D80000992F1 /* CoordinatorFactoryProtocol.swift */,
+				80A2B274242AB631000992F1 /* ModuleFactoryProtocols.swift */,
+				80A2B272242A9F80000992F1 /* AppCoordinatorProtocol.swift */,
+				80A2B270242A9A25000992F1 /* AuthCoordinatorProtocol.swift */,
+				80A2B276242B7193000992F1 /* MainCoordinatorProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -298,7 +310,10 @@
 				80A2B26F242A94D5000992F1 /* MainState.swift in Sources */,
 				804C5FCB24238C8000005621 /* MainScreen.swift in Sources */,
 				804C5FDB2425072D00005621 /* MainCoordinator.swift in Sources */,
+				80A2B277242B7193000992F1 /* MainCoordinatorProtocol.swift in Sources */,
+				80A2B275242AB631000992F1 /* ModuleFactoryProtocols.swift in Sources */,
 				80A2B260242A8615000992F1 /* Coordinatable.swift in Sources */,
+				80A2B271242A9A25000992F1 /* AuthCoordinatorProtocol.swift in Sources */,
 				804C5FBE24215CD300005621 /* BaseCoordinator.swift in Sources */,
 				80A2B266242A88E4000992F1 /* Router.swift in Sources */,
 				804C5FCF24238C9800005621 /* SecondScreen.swift in Sources */,
@@ -308,6 +323,7 @@
 				804C5FC62423897B00005621 /* RegisterViewController.swift in Sources */,
 				80A2B262242A873C000992F1 /* Routable.swift in Sources */,
 				80A2B26B242A948E000992F1 /* AppState.swift in Sources */,
+				80A2B273242A9F80000992F1 /* AppCoordinatorProtocol.swift in Sources */,
 				804C5FE324252F7D00005621 /* CoordinatorsFactory.swift in Sources */,
 				80A2B26D242A94BA000992F1 /* AuthState.swift in Sources */,
 				804C5FB52421581E00005621 /* SignInViewController.swift in Sources */,

@@ -8,6 +8,6 @@
 
 enum MainState {
     case first
-    case second(String, String)
+    case second([String])
     case third([String])
 }

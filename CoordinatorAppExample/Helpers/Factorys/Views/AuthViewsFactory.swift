@@ -8,21 +8,27 @@
 
 import UIKit
 
-class AuthViewsFactory {
+class AuthViewsFactory: AuthViewsFactoryProtocol {
     
-    func createSignInViewController() -> SignInViewController {
-        let vcSignIn = SignInViewController(nibName: "SignInViewController", bundle: .main)
+    weak var coordinator: AuthCoordinatorProtocol!
+    
+    func setCoordinator(coordinator: AuthCoordinatorProtocol) {
+        self.coordinator = coordinator
+    }
+    
+    func createSignInViewController() -> (Presentable & SingInProtocol) {
+        let vcSignIn = SignInViewController(nibName: "SignInViewController", bundle: .main, coordinator: coordinator)
         return vcSignIn
     }
     
     
-    func createForgotViewController() -> ForgotViewController {
-        let vcForgot = ForgotViewController(nibName: "ForgotViewController", bundle: .main)
+    func createForgotViewController() -> (Presentable & ForgotProtocol) {
+        let vcForgot = ForgotViewController(nibName: "ForgotViewController", bundle: .main, coordinator: coordinator)
         return vcForgot
     }
     
-    func createRegisterViewController() -> RegisterViewController {
-        let vcRegister = RegisterViewController(nibName: "RegisterViewController", bundle: .main)
+    func createRegisterViewController() -> (Presentable & RegisterProtocol) {
+        let vcRegister = RegisterViewController(nibName: "RegisterViewController", bundle: .main,  coordinator: coordinator)
         return vcRegister
     }
     

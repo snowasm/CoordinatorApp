@@ -8,14 +8,21 @@
 
 import UIKit
 
-class SignInViewController: UIViewController {
+class SignInViewController: UIViewController, SingInProtocol {
     @IBOutlet weak var loginTF: UITextField!
     @IBOutlet weak var passTF: UITextField!
     
-    var onLogin: ((String, String)->())?
-    var onForgot: (()->())?
-    var onRegister: (()->())?
-
+    weak var coordinator: AuthCoordinatorProtocol!
+    
+    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, coordinator: AuthCoordinatorProtocol) {
+        self.coordinator = coordinator
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,14 +34,14 @@ class SignInViewController: UIViewController {
             let login = loginTF.text,
             let pass = passTF.text
         else { return }
-        self.onLogin?(login, pass)
+        self.coordinator.onLogin(login: login, password: pass)
     }
     
     @IBAction func forgotPressed(_ sender: UIButton) {
-        self.onForgot?()
+        self.coordinator.onForgot()
     }
     @IBAction func registerPressed(_ sender: UIButton) {
-        self.onRegister?()
+        self.coordinator.onRegister()
     }
     /*
     // MARK: - Navigation

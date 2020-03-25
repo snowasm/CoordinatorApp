@@ -8,10 +8,19 @@
 
 import UIKit
 
-class ForgotViewController: UIViewController {
+class ForgotViewController: UIViewController, ForgotProtocol {
     @IBOutlet weak var emailTF: UITextField!
     
-    var onOk: (() -> ())?
+    weak var coordinator: AuthCoordinatorProtocol!
+    
+    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, coordinator: AuthCoordinatorProtocol) {
+        self.coordinator = coordinator
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +34,7 @@ class ForgotViewController: UIViewController {
                                       message: "New password sended to email \(email)",
                                         preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { [weak self] (action) in
-            self?.onOk?()
+            self?.coordinator.onResetPassword()
         }
         alert.addAction(ok)
         present(alert, animated: true, completion: nil)

@@ -9,21 +9,27 @@
 import UIKit
 
 
-class MainViewsFactory {
+class MainViewsFactory: MainViewsFactoryProtocol {
     
-    func createMainScreen() -> MainScreen {
-        let mainScreen = MainScreen(nibName: "MainScreen", bundle: .main)
+    weak var coordinator: MainCoordinatorProtocol!
+    
+    func setCoordinator(coordinator: MainCoordinatorProtocol) {
+        self.coordinator = coordinator
+    }
+    
+    func createMainScreen() -> (Presentable & MainScreenProtocol) {
+        let mainScreen = MainScreen(nibName: "MainScreen", bundle: .main, coordinator: coordinator)
         return mainScreen
     }
     
     
-    func createSecondScreen() -> SecondScreen {
-        let secondScreen = SecondScreen(nibName: "SecondScreen", bundle: .main)
+    func createSecondScreen(data: [String]) -> (Presentable & SecondScreenProtocol) {
+        let secondScreen = SecondScreen(nibName: "SecondScreen", bundle: .main, coordinator: coordinator, data: data)
         return secondScreen
     }
     
-    func createThirdScreenr() -> ThirdScreen {
-        let thirdScreen = ThirdScreen(nibName: "ThirdScreen", bundle: .main)
+    func createThirdScreenr(data: [String]) -> (Presentable & ThirdScreenProtocol) {
+        let thirdScreen = ThirdScreen(nibName: "ThirdScreen", bundle: .main, coordinator: coordinator, data: data)
         return thirdScreen
     }
     

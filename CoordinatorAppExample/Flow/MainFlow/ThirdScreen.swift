@@ -8,27 +8,39 @@
 
 import UIKit
 
-class ThirdScreen: UIViewController {
-    var onConfirm: (([String])->())?
+class ThirdScreen: UIViewController, ThirdScreenProtocol {
     
-    var data: [String]?
+    var name: String?
+    var lastName: String?
+    var age: String?
+    var adres: String?
     @IBOutlet weak var nameTF: UITextField!
     @IBOutlet weak var lastNameTF: UITextField!
     @IBOutlet weak var ageTF: UITextField!
     @IBOutlet weak var adresTF: UITextField!
     
+    weak var coordinator: MainCoordinatorProtocol!
     
+    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, coordinator: MainCoordinatorProtocol, data: [String]) {
+        self.coordinator = coordinator
+        self.name = data[0]
+        self.lastName = data[1]
+        self.age = data[2]
+        self.adres = data[3]
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let data = data else { return }
         
-        nameTF.text = data[0]
-        lastNameTF.text = data[1]
-        ageTF.text = data[2]
-        adresTF.text = data[3]
-
-        // Do any additional setup after loading the view.
+        nameTF.text = name
+        lastNameTF.text = lastName
+        ageTF.text = age
+        adresTF.text = adres
     }
 
 
@@ -36,20 +48,19 @@ class ThirdScreen: UIViewController {
         let alert = UIAlertController(title: "Well done",
                                       message: "Well done",
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        let ok = UIAlertAction(title: "OK", style: .default) { [weak self] (action) in
+            guard
+                let name = self?.name,
+                let lastName = self?.lastName,
+                let age = self?.age,
+                let adres = self?.adres
+            else { return }
+            
+            let outData = [name, lastName, age, adres]
+            self?.coordinator.onConfirm(data: outData)
+        }
+        alert.addAction(ok)
         present(alert, animated: true, completion: nil)
-        
-        guard let data = data else { return }
-        onConfirm?(data)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

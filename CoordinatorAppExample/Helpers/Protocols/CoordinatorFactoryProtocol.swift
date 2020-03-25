@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol CoordinatorFactoryProtocol {
-    func createAuthCoordinator() -> AuthCoordinator
-    func createMainCoordinator() -> MainCoordinator
+protocol CoordinatorFactoryProtocol: AnyObject {
+    func createAuthCoordinator() -> Coordinatable & AuthCoordinatorProtocol
+    func createMainCoordinator() -> Coordinatable & MainCoordinatorProtocol
 }

@@ -8,19 +8,21 @@
 
 import UIKit
 
-class AuthCoordinator: BaseCoordinator {
+class AuthCoordinator: BaseCoordinator, AuthCoordinatorProtocol {
     
-    var finishFlow: ((String)->())?
     var state: AuthState
     
-    
+    weak var parentCoordinator: AppCoordinatorProtocol!
     var router: Routable
-    var factory: AuthViewsFactory
+    var factory: AuthViewsFactoryProtocol
     
-    init(router: Routable, factory: AuthViewsFactory) {
-        self.factory = factory
+    init(parentCoordinator: AppCoordinatorProtocol, router: Routable, factory: AuthViewsFactoryProtocol) {
+        self.parentCoordinator = parentCoordinator
         self.router = router
-        state = .non
+        self.state = .non
+        self.factory = factory
+        super.init()
+        self.factory.setCoordinator(coordinator: self)
     }
     
     
@@ -32,52 +34,59 @@ class AuthCoordinator: BaseCoordinator {
                 showForgot()
             case .auth(let login):
                 print("auth complete")
-                self.finishFlow?(login)
+                self.finishFlow(login: login)
             case .register:
                 showRegister()
         }
         
     }
     
+    func onLogin(login: String, password: String) {
+        print(login)
+        print(password)
+        self.state = .auth(login)
+        self.start()
+    }
     
-    func showSignIn() {
+    func onForgot() {
+        self.state = .forgot
+        self.start()
+    }
+    
+    func onRegister() {
+        self.state = .register
+        self.start()
+    }
+    
+    func onResetPassword() {
+        self.state = .non
+        self.router.popModule(animated: true)
+    }
+    
+    func onCreate(login: String, password: String) {
+        self.state = .non
+        print(login)
+        print(password)
+        self.router.popModule(animated: true)
+    }
+    
+    func finishFlow(login: String) {
+        self.parentCoordinator.finishAuthFlow(coordinator: self, login: login)
+    }
+    
+    
+    private func showSignIn() {
         let vcSignIn = factory.createSignInViewController()
-        vcSignIn.onLogin = {[weak self] (login, password) in
-            print(login)
-            print(password)
-            self?.state = .auth(login)
-            self?.start()
-        }
-        vcSignIn.onForgot = {[weak self] in
-            self?.state = .forgot
-            self?.start()
-        }
-        vcSignIn.onRegister = {[weak self] in
-            self?.state = .register
-            self?.start()
-        }
         router.setRootModule(vcSignIn, hideBar: true)
     }
     
-    func showForgot() {
+    private func showForgot() {
         let vcForgot = factory.createForgotViewController()
-        vcForgot.onOk = { [weak self] in
-            self?.state = .non
-            self?.router.popModule(animated: true)
-        }
-        
         router.push(vcForgot, animated: true)
     }
     
-    func showRegister() {
+    private func showRegister() {
         let vcRegister = factory.createRegisterViewController()
-        vcRegister.onCreate = {[weak self] (login, pass) in
-            self?.state = .non
-            print(login)
-            print(pass)
-            self?.router.popModule(animated: true)
-        }
-        
         router.push(vcRegister, animated: true)
     }
     

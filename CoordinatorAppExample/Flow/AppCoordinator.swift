@@ -8,18 +8,18 @@
 
 import UIKit
 
-class AppCoordinator: BaseCoordinator {
+class AppCoordinator: BaseCoordinator, AppCoordinatorProtocol {
     
     var state: AppState = .nonAuth
     
     var router: Routable
-    var factory: CoordinatorsFactory
+    var factory: CoordinatorFactoryProtocol!
     
     init(router: Routable) {
         self.router = router
-        self.factory = CoordinatorsFactory(router: router)
+        super.init()
+        self.factory = CoordinatorsFactory(parentCoordinator: self, router: router)
     }
-    
     
     override func start() {
         switch state {
@@ -36,24 +36,28 @@ class AppCoordinator: BaseCoordinator {
     
     private func authFlow() {
         let authCoordinator = factory.createAuthCoordinator()
-        authCoordinator.finishFlow = {[weak self] (login) in
-            self?.removeDependency(coordinator: authCoordinator)
-            self?.state = .auth
-            self?.start()
-        }
         self.addDependency(child: authCoordinator)
         authCoordinator.start()
     }
     
+    func finishAuthFlow(coordinator: (Coordinatable & AuthCoordinatorProtocol), login: String) {
+        self.removeDependency(coordinator: coordinator)
+        self.state = .auth
+        self.start()
+    }
+    
     private func mainFlow() {
         let mainCoordinator = factory.createMainCoordinator()
-        mainCoordinator.finishFlow = {[weak self] in
-            self?.removeDependency(coordinator: mainCoordinator)
-        }
         self.addDependency(child: mainCoordinator)
         mainCoordinator.start()
         
     }
     
+    func finishMainFlow(coordinator: (Coordinatable & MainCoordinatorProtocol), data: [String]) {
+        self.removeDependency(coordinator: coordinator)
+        print(data)
+        self.state = .nonAuth
+        self.start()
+    }
     
 }
